@@ -2,11 +2,11 @@
 
 The files in this repository were used to configure the network depicted below.
 
-[AzureRedd.drawio](CybersecurityProjects/AzureRedd.drawio)
+[AzureRedd.drawio](CybersecurityProjects/Images/AzureRedd.drawio)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the yml file may be used to install only certain pieces of it, such as Filebeat.
 
-[MetricFilebeat.yml](CybersecurityProjects/MetricFilebeat.yml)
+[MetricFilebeat.yml](CybersecurityProjects/Resources/MetricFilebeat.yml)
 
 This document contains the following details:
 - Description of the Topologu
@@ -65,7 +65,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![ElkSetup001](CybersecurityProjects/ElkSetup001.png)
+![ElkSetup001](CybersecurityProjects/Images/ElkSetup001.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
