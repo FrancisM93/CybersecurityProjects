@@ -48,19 +48,20 @@ A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | Yes                 | 73.202.206.232       |
-|          |                     |                      |
-|          |                     |                      |
+| Jump Box | No                  | 73.202.206.232       |
+| DVWA     | No                  | 23.100.43.42         |
+| ELK      | No                  | 23.199.43.42         |
 
 ### Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- _TODO: What is the main advantage of automating configuration with Ansible?_
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because playbooks
+in Ansible can be used again to configure other machines.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
+- Download the .deb file for filebeat
+- Install the .deb file for filebeat
+- Copy the configuration file from the Ansible container to your virtual machine
+- Then run the commands 'filebeat modules enable system', 'filebeat setup', and 'filebeat -e'
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
@@ -68,25 +69,21 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+- Web-1 10.0.0.5, Web-2 10.0.0.6, and Web-3 10.0.0.7
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+- Filebeat and Metricbeat
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- Filebeat will log changes to files in your configured virtual machines and send them to Kibana.
+Metricbeat will log metric data from your virtual machines and send them to Kibana.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the .yml file to /etc/ansible/roles.
+- Update the config.yml file to include the the group of target machines 
+- Run the playbook, and navigate to Kibana (http://{insert your jump box ip address}:5601/app/kibana to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
-
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+*As a note: You will use the 'nano' command to configure your playbook files. And you will use the 'ansible-playbook' command to run your yml files.
